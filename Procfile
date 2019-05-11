@@ -1,1 +1,1 @@
-web node pong.js
+web: node pong.js
