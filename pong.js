@@ -63,7 +63,6 @@ function startSocketServer() {
 			socket.emit('waiting', 'bring your friends')
 		}
 
-//test
 		// LETS DETERMINE WHEN THE USER DISCONNECTS
 		socket.on('disconnect', function() {
 			players = players.filter(player => player.id !== socket.id);
