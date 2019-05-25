@@ -48,13 +48,9 @@ app.get('/', (req, res, next) => {
 function startSocketServer() {
 	io.on('connection', function(socket) {
 		players.push(socket);
-		if(players.length > 2) {
-			socket.emit('goaway', 'go away')
-		}
-
-		if(players.length == 2) {
+		function initialize(){
 			const π = Math.PI;
-			direction = Math.random() <=0.5 ? -1 : 1;
+			direction = Math.random() <= 0.5 ? -1 : 1;
 			angle = (Math.random() -0.5 ) * 2 * π/3
 			io.emit('start', {
 				speed,
@@ -70,6 +66,13 @@ function startSocketServer() {
 				ballPosition
 			});
 		}
+
+		if(players.length > 2) {
+			socket.emit('goaway', 'go away')
+		}
+
+		if(players.length == 2) {
+			initialize();
 
 		if(players.length == 1) {
 			socket.emit('waiting', 'bring your friends')
@@ -113,6 +116,13 @@ function startSocketServer() {
 			io.emit('rightPaddleStop', { rightSpeed })
 		});
 
+		socket.on('rightBallPass', function() {
+			initialize();
+		}
+
+		socket.on('leftBallPass', function() {
+			initialize();
+		})
 
 
 
