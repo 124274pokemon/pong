@@ -122,12 +122,12 @@ function startSocketServer() {
 		socket.on('rightBallPass', function() {
 			score.left++;
 			initialize();
-		}
+		});
 
 		socket.on('leftBallPass', function() {
 			score.right++;
 			initialize();
-		})
+		});
 
 
 
