@@ -22,6 +22,7 @@ let paddleHeight = 12;
 let leftSpeed = 0;
 let rightSpeed = 0;
 let ballSpeed = 1;
+let ballSize = 3;
 let angle;
 let direction;
 let players = [];
