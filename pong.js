@@ -76,6 +76,7 @@ function startSocketServer() {
 
 		if(players.length == 2) {
 			initialize();
+		}
 
 		if(players.length == 1) {
 			socket.emit('waiting', 'bring your friends')
@@ -127,10 +128,7 @@ function startSocketServer() {
 		socket.on('leftBallPass', function() {
 			score.right++;
 			initialize();
-		});
-
-
-
+		})
 	});
 }
 
