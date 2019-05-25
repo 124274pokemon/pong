@@ -24,6 +24,8 @@ let rightSpeed = 0;
 let ballSpeed = 1;
 let ballSize = 3;
 let ballPosition = { x: 50, y: 50 }
+let score = {left: 0, right: 0}
+
 let angle;
 let direction;
 let players = [];
@@ -54,6 +56,7 @@ function startSocketServer() {
 			angle = (Math.random() -0.5 ) * 2 * π/3
 			io.emit('start', {
 				speed,
+				score,
 				leftPosition,
 				rightPosition,
 				paddleHeight,
@@ -117,10 +120,12 @@ function startSocketServer() {
 		});
 
 		socket.on('rightBallPass', function() {
+			score.left++;
 			initialize();
 		}
 
 		socket.on('leftBallPass', function() {
+			score.right++;
 			initialize();
 		})
 
